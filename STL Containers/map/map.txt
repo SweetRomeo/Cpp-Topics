@@ -1,0 +1,192 @@
+/*--------------------------------------------------------
+std::map containerı
+map containerının her elemanı birer anahtardır. Her
+anahtarın kendine özgü unique bir elemanı vardır. kısaca
+bir anahtardan birden fazla olması mümkün değildir. Ayrıca
+containerın sıralaması anahtar değerine göre küçükten büyüğe
+doğru yapılır.
+map aslında ikili arama ağacına karşılık gelip onun bütün özelliklerini taşır.
+map'in her elemanı bir pair'den oluşur.
+
+
+----------------------------------------------------------*/
+/*--------------------------------------------------------
+Aşağıdaki örnekte vector sınıfı için const bir sınıf nesnesi
+yaratılması durumunda vector sınıfının front ve back fonksiyonları
+çağrılarak elemanlarının değiştirilmesi syntax hatasına neden olur.
+-------------------------------------------------------*/
+#include <iostream>
+#include <vector>
+
+int main()
+{
+    const std::vector<int> ivec{1,2,3,5,7};
+
+    ivec.front()=99;
+    ivec.back()=333;
+
+    for (auto val:ivec) {
+        std::cout<< val << ' ';
+    }
+}
+/*-------------------------------------------------------
+ insert_or_assign fonksiyonu eğer aynı anahtarlı br eleman
+ varsa onu override eder. Ancak o anahtar bir eleman yoksa
+ o zaman da o anahtarlı elemanı ekler.
+--------------------------------------------------------*/
+
+#include <iostream>
+#include <string>
+#include <map>
+
+int main() {
+    std::map <int, std::string> student = { {1610, "Fatih" }, { 1629, "Berke" } };
+    student.insert_or_assign(1610, "Mehmet");
+    std::cout << "Size: " << student.size() << '\n';
+    for (const auto& [number, name] : student) {
+        std::cout << "name : " << name << '\n';
+        std::cout << "number : " << number << '\n';
+    }
+}
+/*-------------------------------------------------------
+ map sınıfının index of operatörü overload edilmiştir.
+ Overload edilmiş index of operatörü kullanılarak anahtara
+ karşılık gelen değer değiştirilebilir.
+--------------------------------------------------------*/
+
+#include <iostream>
+#include <string>
+#include <map>
+
+int main() {
+    std::map <int, std::string> student = { {1610, "Fatih" }, { 1629, "Berke" } };
+    student.operator[](1610) = "Mehmet";
+    for (const auto& [number, name] : student) {
+        std::cout << "name : " << name << '\n';
+        std::cout << "number : " << number << '\n';
+    }
+}
+
+/*-------------------------------------------------------
+  clear fonksiyonu mapi boşaltır. empty fonksiyonuyla
+  mapin boş olup olmadığı kontrol edilebilir. map boş
+  ise true map dolu ise false değeri döndürülür.
+--------------------------------------------------------*/
+
+#include <iostream>
+#include <string>
+#include <map>
+
+int main() {
+    std::map <int, std::string> student = { {1610, "Fatih" }, { 1629, "Berke" } };
+    student.clear();
+
+    for (const auto& [number, name] : student) {
+        std::cout << "name : " << name << '\n';
+        std::cout << "number : " << number << '\n';
+    }
+    std::cout << std::boolalpha << student.empty() << '\n';
+}
+
+/*-------------------------------------------------------
+  map containerına eleman eklenirken insert fonksiyonu farklı
+  argümanalar alabilir. Bunun dışında emplace fonksiyonu
+  kullanılarak da eleman eklemesi gerçekleştirilebilir.
+--------------------------------------------------------*/
+#include <iostream>
+#include <map>
+
+int main() {
+    using namespace std;
+    map<int,double> mymap{{12,45.6},{78,9.78},{37,102.34}};
+
+    pair<int,double> px{234,45.79};
+    mymap.insert(px);
+    mymap.insert(pair<int,double>{5,2.3});
+    mymap.insert({4,2.23});
+    mymap.insert(make_pair(5,1.1));
+    mymap.emplace(56,1.1);
+
+    for(auto p : mymap){
+        cout << p.first << " " << p.second << '\n';
+    }
+}
+/*-------------------------------------------------------
+  aşağıdaki örnekte index of operatörünün bir başka kullanımı
+  gösterilmiştir. Burada olan bir anahtarın değeri değiştirilir,
+  diğer taraftan eğer eleman yoksa bu durumda eklenir.
+--------------------------------------------------------*/
+#include <iostream>
+#include <map>
+
+int main() {
+    using namespace std;
+    map<string,double> mymap{
+               {"mustafa",45.6},
+               {"mehmet",9.78},
+               {"berke",102.34}
+    };
+
+    mymap.insert({"kaya",78.9});
+    mymap["naciye"] = 12.5; //naciye anahtarı yoksa ekle varsa anahtara karşılık gelen değeri değiştir.
+    mymap["kaya"] = 47.9; //kaya anahtarı olduğu için anahtara karşılık gelen değeri değiştir.
+    (void)getchar();
+    for(const auto&[name,num]:mymap){
+        cout << name << "   " << num << '\n';
+    }
+}
+/*-------------------------------------------------------
+Mape vectorde bulunan tüm isimleri ekliyip bu isimlere
+karşılık gelen anahtar değerlerini 1 arttıran kod aşağıdaki
+gibi yazılabilir.
+--------------------------------------------------------*/
+#include <iostream>
+#include <vector>
+#include <map>
+
+int main() {
+    using namespace std;
+    vector<string> names {"majid","bilge","necati","irma","fatih"};
+    map<string,int> cmap;
+    for(const auto& s:names){
+        ++cmap[s];
+    }
+}
+
+/*-------------------------------------------------------
+Aşağıdaki örnekte görüldüğü gibi bir kod ile dosyaya yazdırılma işlemi
+ gerçekleştirilebilir.
+--------------------------------------------------------*/
+#include <iostream>
+#include <map>
+#include <string>
+#include <vector>
+#include <fstream>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+    vector<string> names {"majid","bilge","necati","irma","fatih"};
+    map<string,int> cmap;
+    for(const auto& s:names){
+        ++cmap[s];
+    }
+    ofstream ofs{"out.txt"};
+    if(!ofs){
+        cerr << "out.txt dosyasi olusturulamadi" << '\n';
+        exit(EXIT_FAILURE);
+    }
+    vector<pair<string,int>> cvec{cmap.begin(),cmap.end()};
+
+    auto fcmp = [](const pair<string,int>& p1,const pair<string,int>& p2){
+        return p2.second < p1.second;
+    };
+
+    sort(cvec.begin(),cvec.end(),fcmp);
+
+    for(const auto& [name,count] : cmap){
+        ofs << name << ' ' << count << '\n';
+    }
+}
