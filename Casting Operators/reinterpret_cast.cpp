@@ -3,7 +3,11 @@ reinterpret_cast tür dönüştürme operatörüyle ilgili aşağıda
 bir örnek gösterilmiştir. reinterpret cast tür dönüştürme operatörü
 kullanılarak farklı pointer türleri birbirine dönüştürülebilir.
 Ancak void* türünde başka türlere dönüşümlerde static_cast tür
-dönüştürme operatörü de tercih edilebilir.
+dönüştürme operatörü de tercih edilebilir. Buna benzer bir şekilde 
+dinamik bellek fonksiyonlarında da reinterpret_cast veya static_cast
+kullanılabilir. Bunun sebebi malloc, calloc gibi dinamik bellek
+fonksiyonlarının geri dönüş değerinin de buradaki örnekteki gibi
+void* türünden olmasından kaynaklanmaktadır.
 --------------------------------------------------------*/
 #include <iostream>
 
