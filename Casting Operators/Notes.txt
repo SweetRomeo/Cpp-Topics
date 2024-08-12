@@ -1,0 +1,23 @@
+/*-------------------------------------------------------
+C++'ta Tür dönüştürme operatörleri
+C'de bildiğimiz gibi yalnızca normal tür dönüştürme operatörü
+bulunmaktadır. Şüphesiz bu operatör C++ dilinde de kullanılabilir.
+Ancak C++11 ile eklenen yeni tür dönüştürme operatörleri bulunmaktadır.
+Dönüşümün hikayesini daha iyi açıkladığı için dile sonrasından eklenen
+bu tür dönüştürme operatörlerini kullanmak daha iyi bir yöntemdir.
+Bu tür dönüştürme operatörleri 4 adettir:
+1-) static_cast
+2-) const_cast
+3-) reinterpret cast
+4-) dynamic_cast
+Bu operatörlerinin kullanım biçimleri aynı olsa da kullanıldığı
+durumlar birbirinden farklıdır. Örneğin int türünden double
+türüne dönüşüm gibi temel türler arası dönüşümlerde static_cast
+tür dönüştürme operatörü kullanılmaktadır. Aşağıdaki örnekte
+a ve b int türünden değişkenler olmak üzere:
+
+double div = static_cast<double>(a) / b;
+
+Burada hedef tür double olduğu için <> içerisine double yazılmıştır.
+parantez içerisindeki ifade de dönüştürülecek ifadeyi temsil etmektedir.
+--------------------------------------------------------*/
