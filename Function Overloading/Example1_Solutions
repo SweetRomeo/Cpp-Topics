@@ -1,0 +1,18 @@
+1-) 
+void func(int);
+void func(const int);
+
+Örneğinde nesnenin kendis const olduğu için bir overloading söz konusu değildir. 
+Not: Fonksiyonun yeniden bildirilmesine redeclaration adı verilir. 
+Burada bir redeclaration söz konusudur. Kısaca bu kod overloading olmasa da bir sentaks hatası da değildir.
+
+2-) 
+void f1(int);
+void f1(int32_t);
+
+Bu örnekteki koda overloading demek de overloading değil demek de yanlıştır. Bunun nedeni overloading olup olmamasının 
+tamamen derleyiciye bağlı olmasından kaynaklanmaktadır. Kısaca burada bir unspecified behaviour söz konusudur diyebiliriz.
+Eğer kullanılan derleyici 4 byte int türüne sahipse(64 bitlik derleyicilerde int türü 4 byte uzunluğundadır.) bu durumda bu bir redeclarationdır diyebiliriz. 
+Ancak Bu derleyici 2 bytelık int türü kullanıyorsa(32 bitlik derleyiciler için int türü 2 byte uzunluğundadır.) bu durumda buna overloading diyebiliriz.
+Not: 1 byte = 8 bit olduğundan int32_t türü de aslında 32 bit yani 4 bytelık int türü anlamını taşımaktadır.
+
