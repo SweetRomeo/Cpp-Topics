@@ -1,0 +1,26 @@
+#include <iostream>
+
+void func(long double)
+{
+    std::cout << "func(long double)\n";
+}
+
+void func(int)
+{
+    std::cout << "func(int)\n";
+}
+
+void func(bool)
+{
+    std::cout << "func(bool)\n";
+}
+
+int main()
+{
+    func(3.4);
+}
+
+Bu örnekte overload resolution kuralları bir bir incelenecektir.
+Öncelikle exacth match kuralı incelenir. func fonksiyonu çağrılırken ona
+gönderilen argüman 3.4 sabitidir. Bu sabitin türü aşağıdaki sabit kuralına göre double türünden olacaktır:
+"Sayı nokta içeriyorsa ve sonuna herhangi bir ek almamışsa bu durumda double türündendir."
