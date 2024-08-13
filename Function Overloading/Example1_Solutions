@@ -17,4 +17,58 @@ Ancak Bu derleyici 2 bytelık int türü kullanıyorsa(32 bitlik derleyiciler i�
 Not: 1 byte = 8 bit olduğundan int32_t türü de aslında 32 bit yani 4 bytelık int türü anlamını taşımaktadır.
 
 Soru 3:
+typedef int Integer;
+void f2(Integer);
+void f2(int);
 
+Yukarıdaki örnekte bir typedef bildirimi ile tür eş isim bildirimi yapılmıştır. Buna göre artık Integer demek int demek anlamına gelmektedir. 
+Bu bağlamda iki tane int parametreye sahip f2 fonksiyonu elde edilir. Buna göre bunun bir redeclaration olduğunu söyleyebiliriz. Kısaca overloading söz 
+konusu değildir.
+
+Soru 4
+void f3(int*);
+void f3(const int*);
+
+1 nolu örnekteki ile benzer mantık gibi düşünülse de farklıdır. Burada pointer low level const olduğu için bir overloading söz konusudur. Nesnenin kendisi const olduğu durumlarda
+overloading söz konusu değildir. 
+
+Soru 5
+void f5(int32_t);
+void f5(int16_t);
+void f5(int8_t);
+
+Burada durum 2 nolu örnekten farklıdır çünkü burada derleyici bağlı bir değişim söz konusu değildir. Buna göre 3 tane overloading olduğunu söyleyebiliriz.
+Anahtar Notlar: Bu tür eş isimlerini kullanırken cinttypes isimli başlık dosyası include edilmelidir.
+
+Soru 6
+void f6(char);
+void f6(signed char);
+void f6(unsigned char);
+
+C ve C++ programlama dillerine göre charın signed char veya unsigned char olması derleyiciye bağlıdır. Bu sebepten char hem signed chardan hem de unsigned chardan farklı bir 
+tür olarak kabul edilmiştir. Buradan yola çıkarak bu örnek için 3 adet overload bulunduğunu söyleyebiliriz.
+
+Soru 7
+int f7(int);
+double f7(int);
+
+Bildiğimiz gibi fonksiyon imzasını etkileyen tek şey fonksiyonun geri dönüş değeri dışındaki parametrik yapısıdır. Yani geri dönüş değerinin değişmesi fonksiyonun imzasını 
+etkilemez. Ancak burada bir redeclaration da söz konusu değildir. Bu örnek doğrudan sentaks hatasına neden olur.
+
+Soru 8
+void f8(int);
+void f8(int);
+
+Bu örnekte türler aynı olduğu için buna redeclaration diyebiliriz. Herhangi şekilde bir overloading söz konusu değildir.
+
+Soru 9
+void f9(long);
+void f9(long int);
+
+long ve long int aslında aynı türü ifade eder. Bu sebeple burada overloadingten bahsedilemez. Burada bir redeclaration söz konusudur.
+
+Soru 10
+void foo(int x, int y = 5);
+void foo(int x);
+
+Fonksiyonların varsayılan argüman almaları imzalarının değişmesine engel değildir. Bu durumda bu örnek için overloading'ten bahsedilebilir.
