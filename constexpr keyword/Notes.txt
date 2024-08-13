@@ -1,0 +1,55 @@
+/*--------------------------------------------------------
+constexpr anahtar sözcüğü
+1-)const türün bir parçası iken constexpr'nin türle herhangi bir
+alakası yoktur.Bir değişken türü const int olabilirken constexpr int olamaz.
+2-)constexpr değişkenler sabit ifadesi gereken her yerde
+kullanımına izin vermektedir. Örneğin otomatik ömürlü bir nesnenin
+adresi sabit ifadesi olmadığı için syntax hatasına sebep olur.
+Aşağıdaki örnekteki kod geçerlidir.
+çünkü ilk ifadenin karşılığı aslında şu şekildedir:
+int* const ptr = 10;
+-------------------------------------------------------*/
+int main() {
+    constexpr int* ptr = 10;
+    *ptr = 20; //legal
+}
+/*--------------------------------------------------------
+Aşağıdaki örnekteki kodda *ptr = 20 ifadesi geçerlidir çünkü ptr
+bir high level consttur. Yani bu durumda ptr başka bir adresi
+gösteremezken *ptr'nin değeri değiştirebilir. Bu yüzden ptr'nin
+başka bir değişkeni gösterme girişimi doğrudan sentaks hatası olacaktır.
+-------------------------------------------------------*/
+int g = 10;
+
+int main() {
+    constexpr int* ptr = 10;
+    *ptr = 20; //legal
+    ptr = &g; //error
+}
+/*--------------------------------------------------------
+Aşağıdaki örnekte hem ptr const hem de *ptr consttur.
+Burdan da anlaşılabileceği gibi constexpr değişkenin
+kendisini const yapmaktadır. Bizim babadan kalma const
+anahtar sözcüğümüz ise *ptr ifadesini const yapmaktadır.
+Buna göre aşağıdaki kod geçersizdir.
+-------------------------------------------------------*/
+int g = 10;
+
+int main() {
+    constexpr const int* ptr = 10;
+    *ptr = 20;
+}
+/*--------------------------------------------------------
+constexpr bir fonksiyona yapılan çağrılarda tüm parametrelere
+sabit ifade gönderilmesi durumunda fonksiyonun geri dönüş değeri
+runtimeda değil compile-time içerisinde hesaplanır bu da
+verim açısından çok iyidir.
+-------------------------------------------------------*/
+constexpr int func(int x, int y) {
+    return x * x + y * y;
+}
+
+int main()
+{
+    func(10,20);
+}
