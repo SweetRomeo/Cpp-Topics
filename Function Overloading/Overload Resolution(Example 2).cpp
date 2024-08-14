@@ -5,11 +5,10 @@ ambiguity(iki anlamlılık) oluşur:
 1-)aday fonksiyonlar incelenir.(candiate functions)
 Not:Aday olma şartı sadece istenen isme sahip olmasıdır.
 2-)aday fonksiyonlar arasından function overload resolution
-a göre uygun fonksiyon seçilir veya fonksiyonlar (viable functions) seçilir.
-Eğer hiçbir uygun fonksiyon yoksa syntax hatası oluşur. Bu durumu
-No match adı verilir.
- bunların arasından da function overload resolution kurallarına göre
-uygun fonksiyon seçilir ve çağrılır bu uygun fonksiyon birden fazlaysa bu durumda
+a göre uygun fonksiyon seçilir. Bu fonksiyonlara viable functions adı verilir. Bu fonksiyonlar için eğer sadece bu fonksiyon varsa 
+o çağrılır demektir. Eğer hiçbir uygun fonksiyon yoksa syntax hatası oluşur. Bu durumu
+No match adı verilir. Eğer birden fazla viable fonksiyon varsa bu fonksiyonların arasından da function overload resolution kurallarına göre
+en uygun fonksiyon seçilir. Seçilebilirliği en yüksek fonksiyona best match adı verilir. Ortada birden fazla best match fonksiyon bulunuyorsa bu durumda
 ambiguity(iki anlamlılık) oluşur.
 Function Overload resolution kuralları:
 1-)exact match(Tam uyum):Fonksiyona gönderilen argümanlar ile
