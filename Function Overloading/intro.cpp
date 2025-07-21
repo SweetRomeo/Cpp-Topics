@@ -10,7 +10,10 @@ Fonksiyon imzasını:
 1-) Fonksiyonun geri dönüş değer türü etkilemez.
 2-) Fonksiiyonun static veya non-static olması etkilemez.
 3-) Fonksiyonun public, private veya protected olması etkilemez.
-4-) Fonksiyonun geri dönüş değeri haricindeki parametrik yapısı
+4-) Fonksiyonun geri dönüş değeri haricindeki parametrik yapısı etkiler. Örneğin:
+void func(int);
+void func(double);
+Yukarıdaki func fonksiyonların imzaları birbirinden farklıdır. 
 
 Function overloading konusu incelenirken öncelikle fonksiyon
 çağrısının nasıl yapılacağından çok bir overloading'in var olup olmadığı kontrol
