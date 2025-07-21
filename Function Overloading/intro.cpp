@@ -1,7 +1,11 @@
 /*-------------------------------------------------------
 Function overloading C dilinde olmayıp C++ dilinde olan
-bir nesne yönelimli programlama konseptidir. Function overloading'de
-temel konsept aynı isimde fakat farklı imzaya sahip fonksiyonlar olmasına dayanmaktadır.
+bir nesne yönelimli programlama konseptidir. Buna verilen diğer bir 
+isim ise compile time polimorfzimdir. İleride ele alacağımız diğer bir polimorfzim türü 
+ise runtime polimorfzim diğer adıyla function overridingdir. 
+Function overloading'in diğer adı olan compile time polymorfzim(derleme zamanı çok biçimliliği) de anlaşılabileceği gibi
+bu işlemin progmanı çalışma zamanına ek bir maliyeti yoktur, tamamen derleme zamanıyla ilgili bir özelliktir.
+Function overloading'de temel konsept aynı isimde fakat farklı imzaya sahip fonksiyonlar olmasına dayanmaktadır.
 Fonksiyon imzasını:
 1-) Fonksiyonun geri dönüş değer türü etkilemez.
 2-) Fonksiiyonun static veya non-static olması etkilemez.
